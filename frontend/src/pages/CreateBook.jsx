@@ -54,11 +54,12 @@ const CreateBook = () => {
         <div>
           <label
             className="block uppercase tracking-wide text-slate-700 text-xs font-bold mb-2"
-            htmlFor="grid-first-name"
+            htmlFor="title"
           >
             Title
           </label>
           <input
+            id="title"
             className="appearance-none block w-full text-slate-700 border border-black rounded py-3 px-4 mb-3 leading-tight "
             placeholder="The Wreck of The Titan"
             {...register("title")}
@@ -67,11 +68,12 @@ const CreateBook = () => {
         <div>
           <label
             className="block uppercase tracking-wide text-slate-700 text-xs font-bold mb-2"
-            htmlFor="grid-first-name"
+            htmlFor="author"
           >
             Author
           </label>
           <input
+            id="author"
             className="appearance-none block w-full text-slate-700 border border-black rounded py-3 px-4 mb-3 leading-tight "
             placeholder="Morgan Robertson"
             {...register("author")}
@@ -80,11 +82,12 @@ const CreateBook = () => {
         <div>
           <label
             className="block uppercase tracking-wide text-slate-700 text-xs font-bold mb-2"
-            htmlFor="grid-first-name"
+            htmlFor="publishYear"
           >
             Publis Year
           </label>
           <input
+            id="publishYear"
             className="appearance-none block w-full text-slate-700 border border-black rounded py-3 px-4 mb-3 leading-tight "
             placeholder="1898"
             {...register("publishYear")}

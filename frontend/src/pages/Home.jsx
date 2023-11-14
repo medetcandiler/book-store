@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
+import ConfirmationModal from "../components/ConfirmationModal";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModel, setShowModel] = useState(false);
+  const [deletedBookId, setDeletedBookId] = useState(null);
 
   const fetchBooks = async () => {
     try {
@@ -26,9 +29,35 @@ const Home = () => {
     fetchBooks();
   }, []);
 
-  // if (isLoading) return <Loader />;
+  const handleOpenModal = (id) => {
+    setDeletedBookId(id);
+    setShowModel(true);
+  };
+  const handleCloseModel = () => {
+    setShowModel(false);
+  };
+
+  const handleDelete = async () => {
+    try {
+      const res = await fetch(`http://localhost:5555/books/${deletedBookId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await res.json();
+      if (result) {
+        setBooks((prev) => prev.filter((book) => book._id !== deletedBookId));
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setShowModel(false);
+    }
+  };
+
   return (
-    <div className="container mx-auto  p-4">
+    <div className="container mx-auto p-4">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl my-8">My Books List</h1>
         <Link to="/books/create">
@@ -63,9 +92,14 @@ const Home = () => {
                     <Link to={`/books/update/${book._id}`}>
                       <AiOutlineEdit fill="blue" size={20} />
                     </Link>
-                    <Link className="hover:" to={`/books/delete/${book._id}`}>
+                    <button onClick={() => handleOpenModal(book._id)}>
                       <MdOutlineDelete fill="red" size={20} />
-                    </Link>
+                    </button>
+                    <ConfirmationModal
+                      showModel={showModel}
+                      handleDelete={handleDelete}
+                      handleCloseModel={handleCloseModel}
+                    />
                   </div>
                 </td>
               </tr>
