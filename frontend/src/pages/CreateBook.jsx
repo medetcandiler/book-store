@@ -48,8 +48,9 @@ const CreateBook = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 flex justify-center items-center h-screen">
+    <div className="container mx-auto px-4">
       <PrevButton />
+      <h1 className="text-3xl my-8">Create a Book</h1>
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label

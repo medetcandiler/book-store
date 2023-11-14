@@ -41,7 +41,7 @@ const UpdateBook = () => {
 
   useEffect(() => {
     fetchBook();
-  }, []);
+  }, [id]);
 
   const updateBook = async (data) => {
     try {
@@ -69,9 +69,9 @@ const UpdateBook = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 flex justify-center items-center h-screen">
+    <div className="container mx-auto px-4 ">
       <PrevButton />
-      <h1 className="text-3xl my-8">Update {book.title}</h1>
+      <h1 className="text-3xl my-8 capitalize">Update {book.title}</h1>
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label
