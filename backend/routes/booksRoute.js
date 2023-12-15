@@ -1,12 +1,12 @@
 import express from 'express';
-import { Book } from '../models/bookModel.js'
+import { BookModal } from '../models/bookModel.js'
 
 const router = express.Router();
 
 //get
 router.get('/', async (_, response) => {
   try {
-    const books = await Book.find({});
+    const books = await BookModal.find({});
     response.status(200).send({
       count: books.length,
       data: books
@@ -24,7 +24,7 @@ router.post('/', async (request, response) => {
       return response.status(400).send({ message: 'Send all requestuired fields: title, author, publishYear' })
     };
 
-    const book = await Book.create(request.body);
+    const book = await BookModal.create(request.body);
 
     return response.status(201).send(book);
   } catch (error) {
@@ -38,7 +38,7 @@ router.get('/:id', async (request, response) => {
   try {
     const { id } = request.params;
 
-    const book = await Book.findById(id);
+    const book = await BookModal.findById(id);
 
     return response.status(200).send(book);
   } catch (error) {
@@ -56,7 +56,7 @@ router.put('/:id', async (request, response) => {
 
     const { id } = request.params;
 
-    const result = await Book.findByIdAndUpdate(id, request.body);
+    const result = await BookModal.findByIdAndUpdate(id, request.body);
 
     if (!result) {
       return response.status(404).send({ message: 'Book not found' });
@@ -76,7 +76,7 @@ router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params;
 
-    const result = await Book.findByIdAndDelete(id);
+    const result = await BookModal.findByIdAndDelete(id);
 
     if (!result) {
       return response.status(404).send({ message: 'Book not found' })
