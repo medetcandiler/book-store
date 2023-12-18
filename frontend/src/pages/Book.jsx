@@ -26,16 +26,15 @@ const Book = () => {
   }, []);
 
   return (
-    <section className="container mx-auto px-5">
+    <section className="container mx-auto px-12">
       <PrevButton />
-      <h1 className="text-3xl mt-20 mb-4">Details of Book</h1>
-
+      <h1 className="text-3xl mt-20 mb-5">Details of Book</h1>
       {isLoading ? (
         <Loader />
       ) : (
         <div className="flex flex-col space-y-6 border border-sky-700 p-10 rounded-lg">
           <div className="flex items-center space-x-3">
-            <h1 className="text-slate-700 text-xl">Id</h1>
+            <h1 className="text-slate-700 text-xl whitespace-nowrap">Id</h1>
             <span className="text-md">{book._id}</span>
           </div>
           <div className="flex items-center space-x-3">

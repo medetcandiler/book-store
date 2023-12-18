@@ -41,21 +41,21 @@ const Table = ({
     <table className="w-full border-separate border-spacing-2">
       <thead>
         <tr className="h-10">
-          <th className="borderRow">Book Number</th>
-          <th className="borderRow">Title of The Book</th>
-          <th className="borderRow max-md:hidden">Author of The Book</th>
-          <th className="borderRow max-md:hidden">Publish Year</th>
-          <th className="borderRow">Operations</th>
+          <th className="borderCol">Book Number</th>
+          <th className="borderCol">Title of The Book</th>
+          <th className="borderCol max-md:hidden">Author of The Book</th>
+          <th className="borderCol max-md:hidden">Publish Year</th>
+          <th className="borderCol">Operations</th>
         </tr>
       </thead>
       <tbody className="">
         {books.map((book, index) => (
-          <tr key={book._id} className="h-8">
-            <td className="borderRow">{index + 1}</td>
-            <td className="borderRow">{book.title}</td>
-            <td className="borderRow max-md:hidden">{book.author}</td>
-            <td className="borderRow max-md:hidden">{book.publishYear}</td>
-            <td className="borderRow">
+          <tr key={book._id} className="h-8 odd:bg-gray-300">
+            <td className="borderCol">{index + 1}</td>
+            <td className="borderCol">{book.title}</td>
+            <td className="borderCol max-md:hidden">{book.author}</td>
+            <td className="borderCol max-md:hidden">{book.publishYear}</td>
+            <td className="borderCol">
               <div className="flex justify-center space-x-4">
                 <Link to={`/books/details/${book._id}`}>
                   <BsInfoCircle fill="green" size={20} />
